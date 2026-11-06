@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import {
-  ArrowLeft, Edit3, Download, Calendar, Users, DollarSign, Target,
-  Clock, FileText, Tag, ChevronRight, Paperclip, FlaskConical,
+  ArrowLeft, Edit3, Download, Calendar, Users, Target,
+  FileText, Tag, ChevronRight, Paperclip, FlaskConical,
 } from 'lucide-react';
 import { projects, teamMembers, documents } from '../data/mockData';
 
@@ -54,8 +54,8 @@ export default function ProjectDetail() {
   }
 
   const budgetPct = Math.round((project.spent / project.budget) * 100);
-  const projectTeam = teamMembers.filter(m => project.teamIds.includes(m.id));
-  const projectDocs = documents.filter(d => d.projectId === project.id);
+  const projectTeam = teamMembers.filter(m => project.team.includes(m.id));
+  const projectDocs = documents.filter(d => d.project === project.title);
 
   return (
     <div className="space-y-6">
@@ -68,7 +68,7 @@ export default function ProjectDetail() {
       <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
         <div>
           <div className="flex items-center gap-3 mb-2">
-            <h1 className="text-2xl font-bold text-gray-900">{project.name}</h1>
+            <h1 className="text-2xl font-bold text-gray-900">{project.title}</h1>
             <span className={`px-2.5 py-1 rounded-full text-xs font-semibold capitalize ${statusBadgeStyles[project.status]}`}>
               {project.status.replace('-', ' ')}
             </span>
@@ -143,7 +143,7 @@ export default function ProjectDetail() {
                   <Users className="w-4 h-4 text-gray-400" />
                   <span className="text-xs text-gray-500">Team Size</span>
                 </div>
-                <p className="text-sm font-semibold text-gray-900">{project.teamIds.length} members</p>
+                <p className="text-sm font-semibold text-gray-900">{project.team.length} members</p>
               </div>
             </div>
 
@@ -172,7 +172,7 @@ export default function ProjectDetail() {
                       <Cell key={entry.name} fill={entry.color} />
                     ))}
                   </Pie>
-                  <Tooltip formatter={(v: number) => `${v}%`} contentStyle={{ borderRadius: '8px', border: '1px solid #e5e7eb', fontSize: '13px' }} />
+                  <Tooltip formatter={(v: any) => `${v}%`} contentStyle={{ borderRadius: '8px', border: '1px solid #e5e7eb', fontSize: '13px' }} />
                 </PieChart>
               </ResponsiveContainer>
               <div className="space-y-2 mt-2">
@@ -244,13 +244,13 @@ export default function ProjectDetail() {
                   <span className="text-gray-700 text-xs">{member.email}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-500">Availability</span>
+                  <span className="text-gray-500">Projects</span>
                   <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
-                    member.availability === 'full-time' ? 'bg-emerald-100 text-emerald-700' :
-                    member.availability === 'part-time' ? 'bg-amber-100 text-amber-700' :
-                    'bg-gray-100 text-gray-700'
+                    member.projects.length <= 1 ? 'bg-emerald-100 text-emerald-700' :
+                    member.projects.length <= 2 ? 'bg-amber-100 text-amber-700' :
+                    'bg-red-100 text-red-700'
                   }`}>
-                    {member.availability.replace('-', ' ')}
+                    {member.projects.length} active
                   </span>
                 </div>
               </div>
@@ -386,7 +386,7 @@ export default function ProjectDetail() {
                     <FileText className="w-5 h-5" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-medium text-gray-900 text-sm">{doc.name}</p>
+                    <p className="font-medium text-gray-900 text-sm">{doc.title}</p>
                     <p className="text-xs text-gray-500">{doc.size} • Uploaded {doc.date}</p>
                   </div>
                   <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-indigo-500 transition-colors" />

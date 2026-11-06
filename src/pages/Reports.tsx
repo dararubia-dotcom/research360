@@ -29,8 +29,6 @@ import {
   Quote,
   Award,
   Users,
-  Clock,
-  TrendingUp,
   Settings,
   Play,
   Pause,
@@ -267,8 +265,8 @@ function FinancialTab() {
             <BarChart data={budgetByQuarter}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
               <XAxis dataKey="quarter" tick={{ fontSize: 12 }} stroke="#94a3b8" />
-              <YAxis tick={{ fontSize: 12 }} stroke="#94a3b8" tickFormatter={(v: number) => `$${v / 1000}k`} />
-              <Tooltip contentStyle={{ borderRadius: 8, border: '1px solid #e2e8f0', fontSize: 13 }} formatter={(value: number) => [`$${(value / 1000).toFixed(0)}k`, undefined]} />
+              <YAxis tick={{ fontSize: 12 }} stroke="#94a3b8" tickFormatter={(v: any) => `$${Number(v) / 1000}k`} />
+              <Tooltip contentStyle={{ borderRadius: 8, border: '1px solid #e2e8f0', fontSize: 13 }} formatter={(value: any) => `$${(Number(value) / 1000).toFixed(0)}k`} />
               <Legend iconType="circle" wrapperStyle={{ fontSize: 12 }} />
               <Bar dataKey="allocated" name="Allocated" fill="#c7d2fe" radius={[4, 4, 0, 0]} />
               <Bar dataKey="spent" name="Spent" fill="#6366f1" radius={[4, 4, 0, 0]} />
@@ -287,8 +285,8 @@ function FinancialTab() {
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
               <XAxis dataKey="year" tick={{ fontSize: 12 }} stroke="#94a3b8" />
-              <YAxis tick={{ fontSize: 12 }} stroke="#94a3b8" tickFormatter={(v: number) => `$${v / 1000}k`} />
-              <Tooltip contentStyle={{ borderRadius: 8, border: '1px solid #e2e8f0', fontSize: 13 }} formatter={(value: number) => [`$${(value / 1000).toFixed(0)}k`, undefined]} />
+              <YAxis tick={{ fontSize: 12 }} stroke="#94a3b8" tickFormatter={(v: any) => `$${Number(v) / 1000}k`} />
+              <Tooltip contentStyle={{ borderRadius: 8, border: '1px solid #e2e8f0', fontSize: 13 }} formatter={(value: any) => `$${(Number(value) / 1000).toFixed(0)}k`} />
               <Area type="monotone" dataKey="cost" name="Cost per Paper" stroke="#10b981" fill="url(#costGrad)" strokeWidth={2.5} dot={{ r: 4, fill: '#10b981' }} />
             </AreaChart>
           </ResponsiveContainer>
@@ -351,7 +349,7 @@ function ProductivityTab() {
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
               <XAxis type="number" tick={{ fontSize: 12 }} stroke="#94a3b8" />
               <YAxis type="category" dataKey="stage" tick={{ fontSize: 11 }} stroke="#94a3b8" width={100} />
-              <Tooltip contentStyle={{ borderRadius: 8, border: '1px solid #e2e8f0', fontSize: 13 }} formatter={(value: number) => [`${value} days`, undefined]} />
+              <Tooltip contentStyle={{ borderRadius: 8, border: '1px solid #e2e8f0', fontSize: 13 }} formatter={(value: any) => `${value} days`} />
               <Bar dataKey="days" name="Days" fill="#3b82f6" radius={[0, 4, 4, 0]} />
             </BarChart>
           </ResponsiveContainer>
@@ -364,8 +362,8 @@ function ProductivityTab() {
           <LineChart data={submittedVsAccepted.map((d) => ({ ...d, rate: Math.round((d.accepted / d.submitted) * 100) }))}>
             <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
             <XAxis dataKey="quarter" tick={{ fontSize: 12 }} stroke="#94a3b8" />
-            <YAxis tick={{ fontSize: 12 }} stroke="#94a3b8" domain={[0, 100]} tickFormatter={(v: number) => `${v}%`} />
-            <Tooltip contentStyle={{ borderRadius: 8, border: '1px solid #e2e8f0', fontSize: 13 }} formatter={(value: number) => [`${value}%`, undefined]} />
+            <YAxis tick={{ fontSize: 12 }} stroke="#94a3b8" domain={[0, 100]} tickFormatter={(v: any) => `${v}%`} />
+            <Tooltip contentStyle={{ borderRadius: 8, border: '1px solid #e2e8f0', fontSize: 13 }} formatter={(value: any) => `${value}%`} />
             <Line type="monotone" dataKey="rate" name="Acceptance Rate" stroke="#10b981" strokeWidth={2.5} dot={{ r: 4, fill: '#10b981' }} />
           </LineChart>
         </ResponsiveContainer>

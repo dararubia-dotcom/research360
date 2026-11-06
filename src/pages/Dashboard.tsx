@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
+  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   PieChart, Pie, Cell,
 } from 'recharts';
 import {
   TrendingUp, TrendingDown, FolderKanban, DollarSign, Users, BookOpen,
-  FileText, GitBranch, CheckCircle2, AlertCircle, Clock, ArrowRight,
-  CalendarDays, FlaskConical, Award,
+  FileText, GitBranch, CheckCircle2, ArrowRight,
 } from 'lucide-react';
 import { projects, teamMembers } from '../data/mockData';
 
@@ -215,7 +214,7 @@ export default function Dashboard() {
                 ))}
               </Pie>
               <Tooltip
-                formatter={(value: number, name: string) => [`${value} projects`, name]}
+                formatter={(value: any, name: any) => [`${value} projects`, name]}
                 contentStyle={{ borderRadius: '8px', border: '1px solid #e5e7eb', fontSize: '13px' }}
               />
             </PieChart>
@@ -311,7 +310,7 @@ export default function Dashboard() {
                   <tr key={p.id} className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors">
                     <td className="py-3 px-4">
                       <Link to={`/projects/${p.id}`} className="font-medium text-gray-900 hover:text-indigo-600 transition-colors">
-                        {p.name}
+                        {p.title}
                       </Link>
                       <p className="text-xs text-gray-400 mt-0.5">{p.area}</p>
                     </td>

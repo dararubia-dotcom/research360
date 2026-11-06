@@ -38,7 +38,7 @@ export default function Projects() {
     return projects.filter(p => {
       const matchesStatus = activeFilter === 'all' || p.status === activeFilter;
       const matchesSearch = !searchQuery ||
-        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         p.pi.toLowerCase().includes(searchQuery.toLowerCase()) ||
         p.area.toLowerCase().includes(searchQuery.toLowerCase());
       return matchesStatus && matchesSearch;
@@ -110,7 +110,7 @@ export default function Projects() {
                   <div className="flex items-start justify-between gap-4 mb-3">
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 group-hover:text-indigo-600 transition-colors">
-                        {project.name}
+                        {project.title}
                       </h3>
                       <span className={`inline-block mt-1 px-2 py-0.5 rounded-full text-xs font-medium ${areaBadgeColors[project.area] || 'bg-gray-50 text-gray-700'}`}>
                         {project.area}
@@ -161,7 +161,7 @@ export default function Projects() {
                   {/* Team Members Avatars */}
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center -space-x-2">
-                      {project.teamIds.slice(0, 4).map((_, i) => {
+                      {project.team.slice(0, 4).map((_: string, i: number) => {
                         const colors = ['from-blue-400 to-indigo-500', 'from-emerald-400 to-teal-500', 'from-purple-400 to-pink-500', 'from-amber-400 to-orange-500'];
                         return (
                           <div
@@ -170,13 +170,13 @@ export default function Projects() {
                           />
                         );
                       })}
-                      {project.teamIds.length > 4 && (
+                      {project.team.length > 4 && (
                         <div className="w-7 h-7 rounded-full bg-gray-100 border-2 border-white flex items-center justify-center text-xs font-medium text-gray-500">
-                          +{project.teamIds.length - 4}
+                          +{project.team.length - 4}
                         </div>
                       )}
                     </div>
-                    <span className="text-xs text-gray-400">{project.teamIds.length} members</span>
+                    <span className="text-xs text-gray-400">{project.team.length} members</span>
                   </div>
 
                   {/* Tags */}

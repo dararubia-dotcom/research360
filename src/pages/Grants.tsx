@@ -2,7 +2,6 @@ import { useState, useMemo } from 'react';
 import {
   Award,
   Calendar,
-  Clock,
   DollarSign,
   ExternalLink,
   FileText,
@@ -17,7 +16,6 @@ import {
   Send,
   Plus,
   Target,
-  Percent,
 } from 'lucide-react';
 
 type GrantStatus = 'open' | 'submitted' | 'under_review' | 'revision' | 'awarded' | 'archived';

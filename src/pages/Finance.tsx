@@ -196,7 +196,7 @@ export default function Finance() {
                 <XAxis dataKey="month" tick={{ fontSize: 12, fill: '#64748b' }} />
                 <YAxis tick={{ fontSize: 12, fill: '#64748b' }} tickFormatter={v => `$${(v / 1000).toFixed(0)}k`} />
                 <Tooltip
-                  formatter={(value: number) => formatCurrency(value)}
+                  formatter={(value: any) => formatCurrency(Number(value))}
                   contentStyle={{ borderRadius: '0.75rem', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgb(0 0 0 / .07)' }}
                 />
                 <Legend wrapperStyle={{ fontSize: '12px' }} />
@@ -221,7 +221,7 @@ export default function Finance() {
                 <XAxis type="number" tick={{ fontSize: 12, fill: '#64748b' }} tickFormatter={v => `$${(v / 1000).toFixed(0)}k`} />
                 <YAxis type="category" dataKey="name" tick={{ fontSize: 12, fill: '#64748b' }} width={110} />
                 <Tooltip
-                  formatter={(value: number) => formatCurrency(value)}
+                  formatter={(value: any) => formatCurrency(Number(value))}
                   contentStyle={{ borderRadius: '0.75rem', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgb(0 0 0 / .07)' }}
                 />
                 <Legend wrapperStyle={{ fontSize: '12px' }} />

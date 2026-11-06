@@ -90,10 +90,13 @@ export default function Timeline() {
   const projectMilestones = useMemo(() => {
     const map = new Map<string, typeof timelineEvents>();
     timelineEvents.forEach((e) => {
-      if (e.projectId && e.type === 'milestone') {
-        const arr = map.get(e.projectId) || [];
-        arr.push(e);
-        map.set(e.projectId, arr);
+      if (e.project && e.type === 'milestone') {
+        const proj = projects.find((p) => p.title === e.project);
+        if (proj) {
+          const arr = map.get(proj.id) || [];
+          arr.push(e);
+          map.set(proj.id, arr);
+        }
       }
     });
     return map;
@@ -251,7 +254,7 @@ export default function Timeline() {
               <div className="space-y-3">
                 {upcomingMilestones.map((ms) => {
                   const days = daysUntil(ms.date);
-                  const project = projects.find((p) => p.id === ms.projectId);
+                  const project = projects.find((p) => p.title === ms.project);
                   return (
                     <div
                       key={ms.id}
@@ -295,7 +298,7 @@ export default function Timeline() {
           {sortedEvents.map((event) => {
             const cfg = eventTypeConfig[event.type] || eventTypeConfig.milestone;
             const Icon = cfg.icon;
-            const project = projects.find((p) => p.id === event.projectId);
+            const project = projects.find((p) => p.title === event.project);
             return (
               <div
                 key={event.id}

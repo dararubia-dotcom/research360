@@ -91,7 +91,7 @@ export default function Teams() {
   }, []);
 
   function getMemberProjects(memberId: string) {
-    return projects.filter((p) => p.teamMemberIds?.includes(memberId));
+    return projects.filter((p) => p.team.includes(memberId));
   }
 
   return (
@@ -206,22 +206,29 @@ export default function Teams() {
 
               {/* Workload */}
               <div className="mt-3">
-                <div className="flex items-center justify-between text-xs mb-1">
-                  <span className="text-gray-500">Workload</span>
-                  <span className="font-medium text-gray-700">{member.workload}%</span>
-                </div>
-                <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-                  <div
-                    className={`h-full rounded-full transition-all ${
-                      member.workload > 85
-                        ? 'bg-red-500'
-                        : member.workload > 65
-                          ? 'bg-amber-500'
-                          : 'bg-emerald-500'
-                    }`}
-                    style={{ width: `${member.workload}%` }}
-                  />
-                </div>
+                {(() => {
+                  const workload = Math.min(memberProjects.length * 25, 100);
+                  return (
+                    <>
+                      <div className="flex items-center justify-between text-xs mb-1">
+                        <span className="text-gray-500">Workload</span>
+                        <span className="font-medium text-gray-700">{workload}%</span>
+                      </div>
+                      <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                        <div
+                          className={`h-full rounded-full transition-all ${
+                            workload > 85
+                              ? 'bg-red-500'
+                              : workload > 65
+                                ? 'bg-amber-500'
+                                : 'bg-emerald-500'
+                          }`}
+                          style={{ width: `${workload}%` }}
+                        />
+                      </div>
+                    </>
+                  );
+                })()}
               </div>
 
               {/* Actions */}
