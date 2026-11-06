@@ -16,7 +16,7 @@ import { teamMembers, projects } from '../data/mockData';
 const roleColors: Record<string, string> = {
   'Principal Investigator': 'bg-purple-100 text-purple-800',
   'Postdoctoral Researcher': 'bg-blue-100 text-blue-800',
-  'PhD Student': 'bg-emerald-100 text-emerald-800',
+  'PhD Candidate': 'bg-emerald-100 text-emerald-800',
   'Research Assistant': 'bg-amber-100 text-amber-800',
   'Lab Technician': 'bg-cyan-100 text-cyan-800',
   'Data Scientist': 'bg-rose-100 text-rose-800',
@@ -85,8 +85,8 @@ export default function Teams() {
       { label: 'Total Members', value: teamMembers.length, icon: Users, color: 'text-indigo-600 bg-indigo-50' },
       { label: 'Principal Investigators', value: count('Principal Investigator'), icon: Microscope, color: 'text-purple-600 bg-purple-50' },
       { label: 'Postdocs', value: count('Postdoctoral Researcher'), icon: FlaskConical, color: 'text-blue-600 bg-blue-50' },
-      { label: 'PhD Students', value: count('PhD Student'), icon: GraduationCap, color: 'text-emerald-600 bg-emerald-50' },
-      { label: 'Support Staff', value: teamMembers.length - count('Principal Investigator') - count('Postdoctoral Researcher') - count('PhD Student'), icon: Briefcase, color: 'text-amber-600 bg-amber-50' },
+      { label: 'PhD Students', value: count('PhD Candidate'), icon: GraduationCap, color: 'text-emerald-600 bg-emerald-50' },
+      { label: 'Support Staff', value: teamMembers.length - count('Principal Investigator') - count('Postdoctoral Researcher') - count('PhD Candidate'), icon: Briefcase, color: 'text-amber-600 bg-amber-50' },
     ];
   }, []);
 

@@ -6,7 +6,7 @@ const routeMeta: Record<string, { title: string; breadcrumb: string }> = {
   '/projects': { title: 'Projects', breadcrumb: 'Projects' },
   '/finance': { title: 'Finance', breadcrumb: 'Finance' },
   '/grants': { title: 'Grants & Funding', breadcrumb: 'Grants' },
-  '/team': { title: 'Team', breadcrumb: 'Team' },
+  '/teams': { title: 'Team', breadcrumb: 'Team' },
   '/timeline': { title: 'Timeline', breadcrumb: 'Timeline' },
   '/documents': { title: 'Documents', breadcrumb: 'Documents' },
   '/reports': { title: 'Reports', breadcrumb: 'Reports' },

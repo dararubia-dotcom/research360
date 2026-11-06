@@ -18,7 +18,7 @@ const navItems = [
   { to: '/projects', icon: FolderKanban, label: 'Projects', badge: 8 },
   { to: '/finance', icon: DollarSign, label: 'Finance' },
   { to: '/grants', icon: Award, label: 'Grants & Funding', badge: 3 },
-  { to: '/team', icon: Users, label: 'Team' },
+  { to: '/teams', icon: Users, label: 'Team' },
   { to: '/timeline', icon: Calendar, label: 'Timeline' },
   { to: '/documents', icon: FileText, label: 'Documents', badge: 15 },
   { to: '/reports', icon: BarChart3, label: 'Reports' },
